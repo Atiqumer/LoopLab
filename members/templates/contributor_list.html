@@ -1,0 +1,17 @@
+<h1>{{ page_title }}</h1>
+<p>Highlight LoopLab members (names, bios, and optional profile photos).</p>
+
+{% comment %} Check if the 'contributors' list has any data {% endcomment %}
+{% if contributors %}
+    <div class="contributor-grid">
+        {% for contributor in contributors %}
+            <div class="contributor-card">
+                <h2>{{ contributor.name }}</h2>
+                <p>{{ contributor.bio }}</p>
+                {% comment %} Add more details like image later {% endcomment %}
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No contributors found yet. Please add data in the admin panel!</p>
+{% endif %}
