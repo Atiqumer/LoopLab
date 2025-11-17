@@ -1,22 +1,40 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block title %}Home / About{% endblock title %}
 
 {% block content %}
-    <section class="hero" style="background-color: var(--dark-violet);">
-        <div class="container">
-            <h1>Welcome to LoopLab!</h1>
-            <p class="mission-statement">
-                We are a community-driven tech lab focused on learning, creativity, and collaboration. 
-                Our mission is to explore tools, test ideas, and build something meaningful together.
+    <section class="bg-loop-dark-violet text-white p-10 md:p-16 rounded-xl shadow-2xl mb-12">
+        <div class="max-w-4xl mx-auto text-center">
+            
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Welcome to LoopLab!</h1>
+            
+            <p class="text-lg md:text-xl font-light mb-6">
+                We are a community-driven tech lab focused on learning, creativity, and collaboration. [cite: 2, 6]
             </p>
-            <a href="#" class="btn-join-us">Join Our Community</a>
+            
+            <p class="text-md mb-8">
+                Our mission is to explore tools, test ideas, and build something meaningful together. [cite: 4]
+            </p>
+            
+            <a href="#" class="inline-block bg-loop-indigo hover:bg-purple-800 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                Join Us (Button Placeholder) [cite: 32]
+            </a>
+            
         </div>
     </section>
 
-    <section class="about-intro">
-        <h2>Who We Are</h2>
-        <p>LoopLab exists to provide a hands-on, open-ended web development playground for developers of all skill levels.</p>
+    <section class="py-8">
+        <h2 class="text-3xl font-bold text-loop-indigo mb-6 border-b-2 border-loop-indigo pb-2">
+            Who We Are
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-8 text-lg text-gray-700">
+            <p>
+                LoopLab exists to provide a hands-on, open-ended web development playground for developers of all skill levels. [cite: 2, 3] We encourage exploration and experimentation over competition. [cite: 3, 4]
+            </p>
+            <p>
+                This tech task simulates a real-world project, giving you practical experience in project structure, deployment, and collaborative feature development. [cite: 7, 11]
+            </p>
+        </div>
     </section>
 {% endblock content %}

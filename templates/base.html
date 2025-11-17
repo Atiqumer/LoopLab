@@ -5,29 +5,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoopLab Community Site - {% block title %}{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    
+    <!-- Load Tailwind CSS CDN for instant utility-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configure Tailwind to use LoopLab's required colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'loop-indigo': '#4B0082', /* LoopLab Primary Color */
+                        'loop-dark-violet': '#2E0854', /* LoopLab Secondary Color */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
     {% block extra_head %}{% endblock extra_head %}
 </head>
-<body>
-    <header>
-        <nav class="navbar">
-            <a href="{% url 'pages:home' %}" class="logo">LOOPLAB</a>
-            <div class="nav-links">
-                <a href="{% url 'members:contributor_list' %}">Contributors</a>
-                <a href="#">Events</a>
-                <a href="#">Projects</a>
-                <a href="#">Contact</a>
+<body class="min-h-screen flex flex-col font-sans bg-gray-50 text-gray-800">
+
+    <!-- Load HTMX for Hypermedia-Driven Interactivity -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+
+    <header class="shadow-md">
+        <!-- Navigation Bar: Dark Violet Background, Responsive Layout -->
+        <nav class="bg-loop-dark-violet text-white p-4">
+            <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
+                
+                <!-- Logo -->
+                <a href="{% url 'pages:home' %}" class="text-2xl font-bold tracking-wider hover:text-loop-indigo transition duration-300">LOOPLAB</a>
+                
+                <!-- Nav Links: Flex for desktop, stacked for mobile -->
+                <div class="flex flex-col md:flex-row md:space-x-8 mt-2 md:mt-0 space-y-2 md:space-y-0 text-sm font-medium">
+                    <a href="{% url 'pages:home' %}" class="hover:text-loop-indigo transition duration-300 py-1 md:py-0">Home / About</a>
+                    <a href="#" class="hover:text-loop-indigo transition duration-300 py-1 md:py-0">Events</a>
+                    <a href="#" class="hover:text-loop-indigo transition duration-300 py-1 md:py-0">Projects</a>
+                    <a href="{% url 'members:contributor_list' %}" class="hover:text-loop-indigo transition duration-300 py-1 md:py-0">Contributors</a>
+                    <a href="#" class="hover:text-loop-indigo transition duration-300 py-1 md:py-0">Contact</a>
+                </div>
             </div>
         </nav>
     </header>
 
-    <main>
+    <!-- Main Content Area: Ensures content is centered and takes up available space -->
+    <main class="flex-grow max-w-7xl mx-auto w-full p-4 md:p-8">
         {% block content %}
-            {% endblock content %}
+        {% endblock content %}
     </main>
 
-    <footer>
-        <p>&copy; 2025 LoopLab Community Tech Task</p>
+    <!-- Footer: Simple and consistent background -->
+    <footer class="bg-loop-dark-violet text-white text-center p-4 text-sm mt-auto">
+        <p>&copy; 2025 LoopLab Community Tech Task. Built with Django and HTMX.</p>
     </footer>
 </body>
 </html>
