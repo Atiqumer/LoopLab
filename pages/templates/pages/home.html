@@ -3,38 +3,49 @@
 {% block title %}Home / About{% endblock title %}
 
 {% block content %}
-    <section class="bg-loop-dark-violet text-white p-10 md:p-16 rounded-xl shadow-2xl mb-12">
+    <!-- 
+    Hero Section: Striking Gradient Background for depth and premium feel
+    -->
+    <section class="bg-gradient-to-br from-loop-dark-violet to-loop-indigo text-white p-12 md:p-20 rounded-3xl shadow-3xl mb-16 transform hover:scale-[1.005] transition duration-500">
         <div class="max-w-4xl mx-auto text-center">
             
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Welcome to LoopLab!</h1>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter drop-shadow-lg">
+                Explore. Build. Vibe.
+            </h1>
             
-            <p class="text-lg md:text-xl font-light mb-6">
-                We are a community-driven tech lab focused on learning, creativity, and collaboration. [cite: 2, 6]
+            <p class="text-xl md:text-2xl font-light mb-6 opacity-90 leading-normal">
+                LoopLab is the community-driven tech lab focused on **learning, creativity, and collaboration**.
             </p>
             
-            <p class="text-md mb-8">
-                Our mission is to explore tools, test ideas, and build something meaningful together. [cite: 4]
+            <p class="text-lg mb-10 italic opacity-75 max-w-2xl mx-auto">
+                Our mission is to explore tools, test ideas, and build something meaningful together through hands-on development tasks.
             </p>
             
-            <a href="#" class="inline-block bg-loop-indigo hover:bg-purple-800 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
-                Join Us (Button Placeholder) [cite: 32]
+            <!-- Join Us Button: Prominent, high-contrast button -->
+            <a href="#" class="inline-block bg-loop-accent text-white font-extrabold tracking-wider text-lg py-4 px-10 rounded-full shadow-2xl transition duration-500 transform hover:scale-105 hover:bg-loop-indigo ring-4 ring-white ring-opacity-50">
+                Join Our Community Today
             </a>
             
         </div>
     </section>
 
+    <!-- 
+    About Intro Section: Clean, professional, and readable layout
+    -->
     <section class="py-8">
-        <h2 class="text-3xl font-bold text-loop-indigo mb-6 border-b-2 border-loop-indigo pb-2">
+        <h2 class="text-4xl font-bold text-loop-dark-violet mb-8 border-b-4 border-loop-accent pb-3">
             Who We Are
         </h2>
         
-        <div class="grid md:grid-cols-2 gap-8 text-lg text-gray-700">
-            <p>
-                LoopLab exists to provide a hands-on, open-ended web development playground for developers of all skill levels. [cite: 2, 3] We encourage exploration and experimentation over competition. [cite: 3, 4]
-            </p>
-            <p>
-                This tech task simulates a real-world project, giving you practical experience in project structure, deployment, and collaborative feature development. [cite: 7, 11]
-            </p>
+        <div class="grid md:grid-cols-2 gap-10 text-xl text-gray-700 leading-relaxed">
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-loop-accent">
+                <h3 class="text-2xl font-semibold text-loop-indigo mb-3">Our Mission</h3>
+                <p>We provide a competitive yet collaborative playground simulating a real-world startup environment. This gives participants practical experience in project structure, deployment, and feature development.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-loop-accent">
+                <h3 class="text-2xl font-semibold text-loop-indigo mb-3">Your Tech Freedom</h3>
+                <p>You have complete freedom over your tech stack—from Django/HTMX to MERN or Angular. We value clean code and ingenious solutions over rigid framework adherence.</p>
+            </div>
         </div>
     </section>
 {% endblock content %}

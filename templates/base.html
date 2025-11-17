@@ -6,20 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoopLab Community Site - {% block title %}{% endblock title %}</title>
     
-    <!-- Load Tailwind CSS CDN for instant utility-first styling -->
+    <!-- Load Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Configure Tailwind to use LoopLab's required colors -->
+    <!-- Configure Tailwind to use LoopLab's required colors and font -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'loop-indigo': '#4B0082', /* LoopLab Primary Color */
-                        'loop-dark-violet': '#2E0854', /* LoopLab Secondary Color */
+                        'loop-indigo': '#4B0082', /* Primary Indigo */
+                        'loop-dark-violet': '#2E0854', /* Secondary Dark Violet */
+                        'loop-accent': '#8A2BE2', /* Bright accent for buttons/hover */
+                        'loop-bg-light': '#F8F9FA', /* Off-white background */
+                    },
+                    boxShadow: {
+                        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
+                        'xl-dark': '0 20px 25px -5px rgba(46, 8, 84, 0.1), 0 10px 10px -5px rgba(46, 8, 84, 0.04)',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
                     }
                 }
             }
@@ -28,40 +34,42 @@
     
     {% block extra_head %}{% endblock extra_head %}
 </head>
-<body class="min-h-screen flex flex-col font-sans bg-gray-50 text-gray-800">
+<body class="min-h-screen flex flex-col font-sans bg-loop-bg-light text-gray-800 antialiased">
 
     <!-- Load HTMX for Hypermedia-Driven Interactivity -->
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 
-    <header class="shadow-md">
-        <!-- Navigation Bar: Dark Violet Background, Responsive Layout -->
+    <!-- Sticky Header with a strong drop shadow -->
+    <header class="sticky top-0 z-20 shadow-xl-dark">
         <nav class="bg-loop-dark-violet text-white p-4">
-            <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
+            <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center px-4">
                 
-                <!-- Logo -->
-                <a href="{% url 'pages:home' %}" class="text-2xl font-bold tracking-wider hover:text-loop-indigo transition duration-300">LOOPLAB</a>
+                <!-- Logo: Bold and tracks wider -->
+                <a href="{% url 'pages:home' %}" class="text-3xl font-extrabold tracking-widest hover:text-loop-accent transition duration-300">LOOPLAB</a>
                 
-                <!-- Nav Links: Flex for desktop, stacked for mobile -->
-                <div class="flex flex-col md:flex-row md:space-x-8 mt-2 md:mt-0 space-y-2 md:space-y-0 text-sm font-medium">
-                    <a href="{% url 'pages:home' %}" class="hover:text-loop-indigo transition duration-300 py-1 md:py-0">Home / About</a>
-                    <a href="#" class="hover:text-loop-indigo transition duration-300 py-1 md:py-0">Events</a>
-                    <a href="#" class="hover:text-loop-indigo transition duration-300 py-1 md:py-0">Projects</a>
-                    <a href="{% url 'members:contributor_list' %}" class="hover:text-loop-indigo transition duration-300 py-1 md:py-0">Contributors</a>
-                    <a href="#" class="hover:text-loop-indigo transition duration-300 py-1 md:py-0">Contact</a>
+                <!-- Nav Links: Professional and responsive -->
+                <div class="flex flex-col md:flex-row md:space-x-8 mt-2 md:mt-0 space-y-2 md:space-y-0 text-base font-medium">
+                    <a href="{% url 'pages:home' %}" class="hover:text-loop-accent transition duration-300 py-1 md:py-0 text-gray-200 hover:font-bold">Home</a>
+                    <a href="#" class="hover:text-loop-accent transition duration-300 py-1 md:py-0 text-gray-200 hover:font-bold">Events</a>
+                    <a href="#" class="hover:text-loop-accent transition duration-300 py-1 md:py-0 text-gray-200 hover:font-bold">Projects</a>
+                    <a href="{% url 'members:contributor_list' %}" class="hover:text-loop-accent transition duration-300 py-1 md:py-0 text-gray-200 hover:font-bold">Contributors</a>
+                    <a href="#" class="hover:text-loop-accent transition duration-300 py-1 md:py-0 text-gray-200 hover:font-bold">Contact</a>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Main Content Area: Ensures content is centered and takes up available space -->
+    <!-- Main Content Area: Centered, large padding -->
     <main class="flex-grow max-w-7xl mx-auto w-full p-4 md:p-8">
-        {% block content %}
-        {% endblock content %}
+        <div class="container mx-auto">
+            {% block content %}
+            {% endblock content %}
+        </div>
     </main>
 
-    <!-- Footer: Simple and consistent background -->
-    <footer class="bg-loop-dark-violet text-white text-center p-4 text-sm mt-auto">
-        <p>&copy; 2025 LoopLab Community Tech Task. Built with Django and HTMX.</p>
+    <!-- Footer: Simple, elegant, and professional -->
+    <footer class="bg-loop-dark-violet text-white text-center p-4 text-sm mt-auto shadow-inner">
+        <p>&copy; 2025 LoopLab Community Tech Task. Crafted with **Django & HTMX**.</p>
     </footer>
 </body>
 </html>
