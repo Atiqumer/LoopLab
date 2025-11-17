@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoopLab Community Site - {% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    {% block extra_head %}{% endblock extra_head %}
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'home' %}" class="logo">LOOPLAB</a>
+            <div class="nav-links">
+                <a href="{% url 'members:contributor_list' %}">Contributors</a>
+                <a href="#">Events</a>
+                <a href="#">Projects</a>
+                <a href="#">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+            {% endblock content %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 LoopLab Community Tech Task</p>
+    </footer>
+</body>
+</html>
