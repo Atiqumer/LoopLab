@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Events{% endblock title %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="text-center mb-16 border-b border-gray-200 pb-6">
+        <h1 class="text-5xl font-extrabold text-loop-dark-violet mb-3 tracking-tighter">
+            {{ page_title|default:"Community Events" }}
+        </h1>
+        <p class="text-xl text-gray-500 max-w-3xl mx-auto">
+            Join our upcoming sessions or check out highlights from past events.
+        </p>
+    </header>
+
+    {% if events %}
+        <div id="event-list" class="space-y-12">
+            
+            {% for event in events %}
+                
+                <!-- Event Card: Premium List Item Design -->
+                <!-- Use yesno filter directly in class and content attributes -->
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100 flex flex-col md:flex-row transition-all duration-500 ease-in-out hover:shadow-2xl hover:scale-[1.01]">
+                    
+                    <!-- Date/Status Block (Left Side): Status determined by is_upcoming field -->
+                    <div class="p-6 md:w-48 flex-shrink-0 text-center text-white {{ event.is_upcoming|yesno:"bg-loop-accent,bg-gray-400" }} bg-opacity-90">
+                        <span class="text-xs font-semibold uppercase tracking-widest block mb-1">
+                            {{ event.is_upcoming|yesno:"Upcoming,Past Event" }}
+                        </span>
+                        <p class="text-5xl font-extrabold leading-none">{{ event.date_time|date:"j" }}</p>
+                        <p class="text-lg font-medium">{{ event.date_time|date:"M Y" }}</p>
+                        <p class="text-sm mt-1">{{ event.date_time|date:"P" }}</p>
+                    </div>
+
+                    <!-- Content Block (Right Side) -->
+                    <div class="p-6 flex-grow">
+                        <h2 class="text-3xl font-bold text-loop-dark-violet mb-2 tracking-tight">
+                            {{ event.title }}
+                        </h2>
+                        
+                        <div class="flex items-center space-x-4 mb-4 text-sm text-gray-600">
+                            <!-- Location Icon -->
+                            <svg class="w-4 h-4 text-loop-indigo" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>{{ event.location }}</span>
+                        </div>
+                        
+                        <p class="text-gray-700 leading-relaxed line-clamp-3">
+                            {{ event.description }}
+                        </p>
+
+                        <div class="mt-4 pt-4 border-t border-gray-100">
+                            <a href="#" class="text-loop-indigo hover:text-loop-accent font-semibold text-base transition duration-300">
+                                {{ event.is_upcoming|yesno:"Register Now →,View Summary →" }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            {% endfor %}
+            
+        </div>
+    {% else %}
+        <!-- Empty State: Clear and branded notification -->
+        <div class="bg-indigo-50 border-t-4 border-loop-indigo p-6 rounded-lg mt-10 max-w-xl mx-auto shadow-md">
+            <div class="flex items-center space-x-4">
+                <svg class="h-8 w-8 text-loop-indigo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h.01M8 11h.01M16 11h.01m-3.01-1H11m-1 5h1m2 0h-1m-4 0h1m2 0h-1m-1 5H6a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H9a2 2 0 01-2-2v-1"></path>
+                </svg>
+                <div class="text-left">
+                    <h3 class="text-lg font-semibold text-loop-dark-violet">No Events Scheduled</h3>
+                    <p class="mt-1 text-base text-gray-700">
+                        Please add upcoming or past event details in the <a href="{% url 'admin:index' %}" class="font-bold text-loop-accent hover:underline">Django Admin panel</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}
