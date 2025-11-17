@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home / About{% endblock title %}
+
+{% block content %}
+    <section class="hero" style="background-color: var(--dark-violet);">
+        <div class="container">
+            <h1>Welcome to LoopLab!</h1>
+            <p class="mission-statement">
+                We are a community-driven tech lab focused on learning, creativity, and collaboration. 
+                Our mission is to explore tools, test ideas, and build something meaningful together.
+            </p>
+            <a href="#" class="btn-join-us">Join Our Community</a>
+        </div>
+    </section>
+
+    <section class="about-intro">
+        <h2>Who We Are</h2>
+        <p>LoopLab exists to provide a hands-on, open-ended web development playground for developers of all skill levels.</p>
+    </section>
+{% endblock content %}
