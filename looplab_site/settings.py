@@ -115,11 +115,30 @@ USE_I18N = True
 
 USE_TZ = True
 
+# backend/looplab_site/settings.py
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
+# backend/looplab_site/settings.py
 
-STATIC_URL = 'static/'
+import os
+from pathlib import Path
+
+# BASE_DIR is typically defined like this:
+# BASE_DIR = Path(__file__).resolve().parent.parent
+
+# --- (Other settings) ---
+
+STATIC_URL = '/static/'
+
+# CRITICAL FIX: The static folder is in the same directory as settings.py
+STATICFILES_DIRS = [
+    # __file__.resolve().parent points directly to the 'looplab_site' directory 
+    # where settings.py and the 'static' folder are located.
+    os.path.join(Path(__file__).resolve().parent, 'static'), 
+]
+
+# Ensure MEDIA_ROOT is also defined if you need ImageField handling
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
