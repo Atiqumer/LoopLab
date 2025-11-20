@@ -3,82 +3,48 @@
 {% block title %}Projects{% endblock title %}
 
 {% block content %}
-    <!-- Page Header: Centered Title, clear visual hierarchy -->
-    <header class="text-center mb-16 border-b border-gray-200 pb-6">
+    <!-- Page Header -->
+    <header class="text-center mb-10 border-b border-gray-200 pb-6">
         <h1 class="text-5xl font-extrabold text-loop-dark-violet mb-3 tracking-tighter">
-            {{ page_title|default:"Community Projects" }}
+            {{ page_title|default:"Community Projects Showcase" }}
         </h1>
         <p class="text-xl text-gray-500 max-w-3xl mx-auto">
-            A showcase of the best work developed by our community members during the tech task.
+            A dynamic showcase of the best work developed by our community members during the tech task.
         </p>
     </header>
 
-    {% if projects %}
-        <!-- Project Grid: Responsive layout (1, 2, or 3 columns) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-4" id="project-list">
-            {% for project in projects %}
-                <!-- Project Card: Uses shadow, scale on hover, and distinct color block -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] border border-gray-100">
-                    
-                    <!-- Category Header/Color Block -->
-                    <div class="p-3 bg-loop-indigo bg-opacity-90 text-white text-xs font-semibold uppercase tracking-wider text-center">
-                        {{ project.category }}
-                    </div>
+    <!-- HTMX Filter Buttons -->
+    <div class="flex flex-wrap justify-center space-x-4 mb-10" id="project-filters">
+        
+        {% comment %} Assume 'categories' and 'active_category' are passed from the view {% endcomment %}
+        
+        <!-- Button Group for Filtering: ALL -->
+        <button 
+            hx-get="{% url 'projects:project_list' %}?category=ALL" 
+            hx-target="#project-cards-container" 
+            hx-swap="innerHTML"
+            class="py-2 px-6 rounded-full font-semibold text-base transition duration-300 transform hover:scale-[1.05] 
+                   {% if active_category == 'ALL' %}bg-loop-indigo text-white shadow-lg{% else %}bg-gray-200 text-gray-700 hover:bg-loop-accent hover:text-white shadow-md{% endif %}">
+            ALL PROJECTS
+        </button>
 
-                    <div class="p-6">
-                        <h2 class="text-2xl font-bold text-loop-dark-violet mb-2 truncate">
-                            {{ project.title }}
-                        </h2>
-                        
-                        <p class="text-sm italic text-gray-500 mb-4">{{ project.tagline }}</p>
-                        
-                        <p class="text-gray-700 mb-4 text-base line-clamp-3">
-                            {{ project.description|default:"No description provided." }}
-                        </p>
+        {% comment %} Assuming categories = ['FRONTEND', 'BACKEND', 'FULLSTACK', 'DESIGN'] {% endcomment %}
+        {% for category in categories %}
+            <button 
+                hx-get="{% url 'projects:project_list' %}?category={{ category }}" 
+                hx-target="#project-cards-container" 
+                hx-swap="innerHTML"
+                class="py-2 px-6 rounded-full font-semibold text-base transition duration-300 transform hover:scale-[1.05]
+                       {% if active_category == category %}bg-loop-indigo text-white shadow-lg{% else %}bg-gray-200 text-gray-700 hover:bg-loop-accent hover:text-white shadow-md{% endif %}">
+                {{ category }}
+            </button>
+        {% endfor %}
+        
+    </div>
+    
+    <!-- Project Grid: HTMX Target Area -->
+    <div id="project-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-4">
+        {% include 'projects/project_cards.html' %}
+    </div>
 
-                        <!-- Contributors List -->
-                        <div class="mb-4">
-                            <span class="font-semibold text-loop-accent text-sm">Built by:</span>
-                            <span class="text-sm text-gray-600">
-                                {% for contributor in project.contributors.all %}
-                                    {{ contributor.name }}{% if not forloop.last %}, {% endif %}
-                                {% empty %}
-                                    <span class="italic text-gray-400">Solo Project</span>
-                                {% endfor %}
-                            </span>
-                        </div>
-
-                        <!-- Action Links -->
-                        <div class="flex space-x-4 mt-4 pt-4 border-t border-gray-100">
-                            {% if project.live_url %}
-                                <a href="{{ project.live_url }}" target="_blank" class="flex-1 text-center bg-loop-accent text-white font-medium py-2 rounded-lg hover:bg-loop-indigo transition duration-300 text-sm shadow-md">
-                                    Live Demo
-                                </a>
-                            {% endif %}
-                            {% if project.github_url %}
-                                <a href="{{ project.github_url }}" target="_blank" class="flex-1 text-center bg-gray-200 text-gray-800 font-medium py-2 rounded-lg hover:bg-gray-300 transition duration-300 text-sm shadow-md">
-                                    GitHub
-                                </a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <!-- Empty State -->
-        <div class="bg-indigo-50 border-t-4 border-loop-indigo p-6 rounded-lg mt-10 max-w-xl mx-auto shadow-md">
-            <div class="flex items-center space-x-4">
-                <svg class="h-8 w-8 text-loop-indigo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21h7a2 2 0 002-2V9a2 2 0 00-2-2h-7M5 21h7m-9-1h9m-9 0V4a2 2 0 012-2h2" />
-                </svg>
-                <div class="text-left">
-                    <h3 class="text-lg font-semibold text-loop-dark-violet">No Projects Yet</h3>
-                    <p class="mt-1 text-base text-gray-700">
-                        Create your first mock project in the <a href="{% url 'admin:index' %}" class="font-bold text-loop-accent hover:underline">Django Admin panel</a>.
-                    </p>
-                </div>
-            </div>
-        </div>
-    {% endif %}
 {% endblock content %}

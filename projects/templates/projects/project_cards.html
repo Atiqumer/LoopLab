@@ -1,0 +1,52 @@
+<!-- projects/templates/projects/project_cards.html -->
+
+{% for project in projects %}
+    <!-- Project Card: Premium Design with strong hover effect and shadow -->
+    <div class="bg-white rounded-2xl shadow-xl-dark overflow-hidden transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] border-t-4 border-loop-accent">
+        
+        <!-- Category Header/Color Block -->
+        <div class="p-3 bg-loop-dark-violet text-white text-xs font-semibold uppercase tracking-widest text-center opacity-90">
+            {{ project.category }}
+        </div>
+
+        <div class="p-6">
+            <h2 class="text-2xl font-bold text-loop-dark-violet mb-2 truncate">
+                {{ project.title }}
+            </h2>
+            
+            <p class="text-sm italic text-gray-500 mb-4">{{ project.tagline }}</p>
+            
+            <p class="text-gray-700 mb-4 text-base leading-relaxed line-clamp-3">
+                {{ project.description|default:"No description provided." }}
+            </p>
+
+            <!-- Contributors List -->
+            <div class="mb-4 pt-2 border-t border-gray-100">
+                <span class="font-semibold text-loop-indigo text-sm">Built by:</span>
+                <span class="text-sm text-gray-600">
+                    {% for contributor in project.contributors.all %}
+                        {{ contributor.name }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                        <span class="italic text-gray-400">Solo Project</span>
+                    {% endfor %}
+                </span>
+            </div>
+
+            <!-- Action Links: Prominent, high-contrast buttons -->
+            <div class="flex space-x-4 mt-4 pt-4 border-t border-gray-100">
+                {% if project.live_url %}
+                    <a href="{{ project.live_url }}" target="_blank" class="flex-1 text-center bg-loop-accent text-white font-bold py-3 rounded-xl hover:bg-loop-indigo transition duration-300 text-sm shadow-lg">
+                        Live Demo
+                    </a>
+                {% endif %}
+                {% if project.github_url %}
+                    <a href="{{ project.github_url }}" target="_blank" class="flex-1 text-center bg-gray-200 text-gray-800 font-bold py-3 rounded-xl hover:bg-gray-300 transition duration-300 text-sm shadow-md">
+                        GitHub
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% empty %}
+    <p class="text-xl text-gray-500 col-span-full text-center p-10 bg-gray-100 rounded-xl">No projects found for the selected category.</p>
+{% endfor %}
