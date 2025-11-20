@@ -3,42 +3,62 @@
 {% block title %}Contact{% endblock title %}
 
 {% block content %}
-    <!-- Page Header -->
+    <!-- Page Header: Updated Spacing and Typography -->
     <header class="text-center mb-16 border-b border-gray-200 pb-6">
         <h1 class="text-5xl font-extrabold text-loop-dark-violet mb-3 tracking-tighter">
             {{ page_title|default:"Get In Touch" }}
         </h1>
         <p class="text-xl text-gray-500 max-w-3xl mx-auto">
-            We'd love to hear from you! Send us a message or connect with us on social media.
+            We'd love to hear from you! Send us a message or connect with the community on social media.
         </p>
     </header>
 
-    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
+    <!-- Main Content Grid -->
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         
-        <!-- Contact Form Block (HTMX Target) -->
-        <div id="contact-form-container" class="md:col-span-1 bg-white p-8 rounded-xl shadow-xl border border-gray-100">
-            <h2 class="text-3xl font-bold text-loop-indigo mb-6">Send Us a Message</h2>
+        <!-- Contact Form Block (Left Column) -->
+        <div id="contact-form-container" class="bg-white p-8 lg:p-10 rounded-2xl shadow-2xl border border-gray-100 h-fit">
+            <h2 class="text-3xl font-bold text-loop-indigo mb-8 border-b pb-3">
+                Send Us a Message
+            </h2>
             
-            <!-- Include the HTMX-enabled form partial -->
+            <!-- This includes the HTMX-enabled form partial (which we enhanced previously) -->
             {% include 'contact/contact_form.html' %}
         </div>
         
-        <!-- Social Media / Contact Info Block -->
-        <div class="md:col-span-1 p-8 bg-loop-dark-violet text-white rounded-xl shadow-xl">
-            <h2 class="text-3xl font-bold mb-6">Connect with LoopLab</h2>
+        <!-- Social Media / Contact Info Block (Right Column): High Contrast Design -->
+        <div class="p-8 lg:p-10 bg-loop-dark-violet text-white rounded-2xl shadow-2xl transform hover:scale-[1.01] transition duration-300">
+            <h2 class="text-3xl font-bold mb-8 text-loop-accent">
+                Connect with LoopLab
+            </h2>
             
-            <div class="space-y-6 text-lg">
-                <div class="flex items-center space-x-4">
-                    <svg class="w-6 h-6 text-loop-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    <span>Placeholder Email: contact@looplab.dev</span>
+            <div class="space-y-8 text-lg font-light">
+                
+                <!-- Email -->
+                <div class="flex items-start space-x-4 border-b border-white border-opacity-20 pb-4">
+                    <svg class="w-6 h-6 text-loop-accent flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <div>
+                        <p class="font-semibold text-gray-200">Email</p>
+                        <span class="text-sm opacity-80">contact@looplab.dev</span>
+                    </div>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <svg class="w-6 h-6 text-loop-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                    <span><a href="#" class="hover:text-loop-accent">GitHub/Repository Link</a></span>
+                
+                <!-- GitHub -->
+                <div class="flex items-start space-x-4 border-b border-white border-opacity-20 pb-4">
+                    <svg class="w-6 h-6 text-loop-accent flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    <div>
+                        <p class="font-semibold text-gray-200">Official Repository</p>
+                        <span><a href="#" class="hover:text-loop-accent text-sm transition duration-300">github.com/looplab-tech</a></span>
+                    </div>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <svg class="w-6 h-6 text-loop-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-7.526a2 2 0 01-1.789-2.106l3.5-7A2 2 0 0114 10zM5 18H3a2 2 0 01-2-2v-2a2 2 0 012-2h3"></path></svg>
-                    <span><a href="#" class="hover:text-loop-accent">Community Group Link</a></span>
+
+                <!-- Community Group -->
+                <div class="flex items-start space-x-4">
+                    <svg class="w-6 h-6 text-loop-accent flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-5a2 2 0 012-2h-3"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18V6a2 2 0 012-2h3a2 2 0 012 2v12a2 2 0 01-2 2h-3a2 2 0 01-2-2zM5 18v-4a2 2 0 012-2h3"></path></svg>
+                    <div>
+                        <p class="font-semibold text-gray-200">Join Our Community</p>
+                        <span><a href="#" class="hover:text-loop-accent text-sm transition duration-300">discord.gg/looplab</a></span>
+                    </div>
                 </div>
             </div>
         </div>
