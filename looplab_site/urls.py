@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
-from django.conf import settings
+from django.conf import settings 
+import os
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -30,4 +31,8 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    # Use settings.BASE_DIR.parent to match the definition in settings.py
+    # Although this argument is usually ignored when STATICFILES_DIRS is set, 
+    # it is the standard way to ensure serving in development.
+    urlpatterns += static(settings.STATIC_URL, document_root=os.path.join(settings.BASE_DIR.parent, 'static'))
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
