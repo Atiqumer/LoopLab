@@ -49,11 +49,62 @@
                 
                 <!-- Nav Links: Professional and responsive -->
                 <div class="flex flex-col md:flex-row md:space-x-8 mt-2 md:mt-0 space-y-2 md:space-y-0 text-base font-medium">
-                    <a href="{% url 'pages:home' %}" class="hover:text-loop-accent transition duration-300 py-1 md:py-0 text-gray-200 hover:font-bold">Home</a>
-                    <a href="{% url 'events:event_list'%}" class="hover:text-loop-accent transition duration-300 py-1 md:py-0 text-gray-200 hover:font-bold">Events</a>
-                    <a href="{% url 'projects:project_list' %}" class="hover:text-loop-accent transition duration-300 py-1 md:py-0 text-gray-200 hover:font-bold">Projects</a>
-                    <a href="{% url 'members:contributor_list' %}" class="hover:text-loop-accent transition duration-300 py-1 md:py-0 text-gray-200 hover:font-bold">Contributors</a>
-                    <a href="{% url 'contact:contact_view' %}" class="hover:text-loop-accent transition duration-300 py-1 md:py-0 text-gray-200 hover:font-bold">Contact</a>
+                    
+                    <!-- Macro to check if path starts with the link's target -->
+                    {% with current_path=request.path %}
+                    
+                    <!-- Home Link -->
+                    <a href="{% url 'pages:home' %}" class="py-1 md:py-0 transition duration-300 
+                        {% if current_path == '/' %}
+                            text-loop-accent font-bold border-b-2 border-loop-accent 
+                        {% else %}
+                            text-gray-200 hover:text-loop-accent hover:font-bold
+                        {% endif %}">
+                        Home
+                    </a>
+                    
+                    <!-- Events Link -->
+                    <a href="{% url 'events:event_list'%}" class="py-1 md:py-0 transition duration-300 
+                        {% if current_path|slice:":7" == '/events' %}
+                            text-loop-accent font-bold border-b-2 border-loop-accent 
+                        {% else %}
+                            text-gray-200 hover:text-loop-accent hover:font-bold
+                        {% endif %}">
+                        Events
+                    </a>
+                    
+                    <!-- Projects Link -->
+                    <a href="{% url 'projects:project_list' %}" class="py-1 md:py-0 transition duration-300 
+                        {% if current_path|slice:":9" == '/projects' %}
+                            text-loop-accent font-bold border-b-2 border-loop-accent 
+                        {% else %}
+                            text-gray-200 hover:text-loop-accent hover:font-bold
+                        {% endif %}">
+                        Projects
+                    </a>
+                    
+                    <!-- Contributors Link -->
+                    <a href="{% url 'members:contributor_list' %}" class="py-1 md:py-0 transition duration-300 
+                        {% if current_path|slice:":13" == '/contributors' %}
+                            text-loop-accent font-bold border-b-2 border-loop-accent 
+                        {% else %}
+                            text-gray-200 hover:text-loop-accent hover:font-bold
+                        {% endif %}">
+                        Contributors
+                    </a>
+
+                    <!-- Contact Link -->
+                    <a href="{% url 'contact:contact_view' %}" class="py-1 md:py-0 transition duration-300 
+                        {% if current_path|slice:":8" == '/contact' %}
+                            text-loop-accent font-bold border-b-2 border-loop-accent 
+                        {% else %}
+                            text-gray-200 hover:text-loop-accent hover:font-bold
+                        {% endif %}">
+                        Contact
+                    </a>
+                    
+                    {% endwith %}
+
                 </div>
             </div>
         </nav>
