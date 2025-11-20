@@ -4,30 +4,25 @@
 
 {% block content %}
     <!-- 
-    SECTION 1: HERO - Striking Gradient Background with Enhanced Typography
-    - Increased padding (p-20 md:p-32) for a luxurious, open feel.
+    Hero Section: Striking Gradient Background for depth and premium feel
     -->
-    <section class="bg-gradient-to-br from-loop-dark-violet to-loop-indigo text-white p-20 md:p-32 rounded-3xl shadow-3xl mb-20 transform hover:scale-[1.005] transition duration-700 relative overflow-hidden">
-        
-        <!-- Subtle Visual Element (Noise pattern for depth) -->
-        <div class="absolute inset-0 opacity-10 bg-repeat" style="background-image: url('data:image/svg+xml;utf8,<svg width=\"8\" height=\"8\" viewBox=\"0 0 8 8\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"4\" cy=\"4\" r=\"1\" fill=\"white\"/></svg>');"></div>
-
-        <div class="max-w-5xl mx-auto text-center relative z-10">
+    <section class="bg-gradient-to-br from-loop-dark-violet to-loop-indigo text-white p-12 md:p-20 rounded-3xl shadow-3xl mb-16 transform hover:scale-[1.005] transition duration-500">
+        <div class="max-w-4xl mx-auto text-center">
             
-            <h1 class="text-6xl md:text-8xl font-black mb-4 tracking-tighter drop-shadow-xl">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter drop-shadow-lg">
                 Explore. Build. Vibe.
             </h1>
             
-            <p class="text-xl md:text-3xl font-extralight mb-6 opacity-95 leading-snug max-w-4xl mx-auto">
-                LoopLab is the **community-driven tech lab** focused on hands-on development and professional collaboration.
+            <p class="text-xl md:text-2xl font-light mb-6 opacity-90 leading-normal">
+                LoopLab is the community-driven tech lab focused on **learning, creativity, and collaboration**.
             </p>
             
-            <p class="text-lg mb-12 italic opacity-75 max-w-2xl mx-auto">
-                Our mission is to explore tools, test ideas, and build something meaningful together.
+            <p class="text-lg mb-10 italic opacity-75 max-w-2xl mx-auto">
+                Our mission is to explore tools, test ideas, and build something meaningful together through hands-on development tasks.
             </p>
             
             <!-- Join Us Button: Prominent, high-contrast button -->
-            <a href="#" class="inline-block bg-loop-accent text-white font-extrabold tracking-wider text-xl py-4 px-12 rounded-full shadow-2xl transition duration-500 transform hover:scale-105 hover:bg-loop-indigo ring-4 ring-white ring-opacity-50">
+            <a href="#" class="inline-block bg-loop-accent text-white font-extrabold tracking-wider text-lg py-4 px-10 rounded-full shadow-2xl transition duration-500 transform hover:scale-105 hover:bg-loop-indigo ring-4 ring-white ring-opacity-50">
                 Join Our Community Today
             </a>
             
@@ -35,71 +30,22 @@
     </section>
 
     <!-- 
-    SECTION 2: CORE VALUE PROPOSITION (3 CARDS)
-    - Dynamic hover effects for engagement.
+    About Intro Section: Clean, professional, and readable layout
     -->
-    <section class="py-12">
-        <h2 class="text-4xl font-extrabold text-loop-dark-violet mb-12 text-center border-b-4 border-loop-accent pb-3">
-            What We Offer
+    <section class="py-8">
+        <h2 class="text-4xl font-bold text-loop-dark-violet mb-8 border-b-4 border-loop-accent pb-3">
+            Who We Are
         </h2>
         
-        <div class="grid md:grid-cols-3 gap-10 text-xl text-gray-700 leading-relaxed">
-            
-            <!-- Card 1: Hands-on Learning -->
-            <div class="bg-white p-8 rounded-2xl shadow-xl border-l-4 border-loop-accent text-center transition duration-500 hover:shadow-3xl transform hover:translate-y-[-8px]">
-                <svg class="w-12 h-12 text-loop-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-5a2 2 0 012-2h-3"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18V6a2 2 0 012-2h3a2 2 0 012 2v12a2 2 0 01-2 2h-3a2 2 0 01-2-2zM5 18v-4a2 2 0 012-2h3"></path></svg>
-                <h3 class="text-2xl font-bold text-loop-indigo mb-3">Hands-on Learning</h3>
-                <p class="text-base text-gray-600">Simulate a real-world startup environment with concrete, deliverable tech tasks.</p>
+        <div class="grid md:grid-cols-2 gap-10 text-xl text-gray-700 leading-relaxed">
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-loop-accent">
+                <h3 class="text-2xl font-semibold text-loop-indigo mb-3">Our Mission</h3>
+                <p>We provide a competitive yet collaborative playground simulating a real-world startup environment. This gives participants practical experience in project structure, deployment, and feature development.</p>
             </div>
-            
-            <!-- Card 2: Flexible Tech Stack -->
-            <div class="bg-white p-8 rounded-2xl shadow-xl border-l-4 border-loop-accent text-center transition duration-500 hover:shadow-3xl transform hover:translate-y-[-8px]">
-                <svg class="w-12 h-12 text-loop-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 15h14M5 9h14M8 13h.01M16 13h.01"></path></svg>
-                <h3 class="text-2xl font-bold text-loop-indigo mb-3">Flexible Tech Stack</h3>
-                <p class="text-base text-gray-600">Complete freedom over your stack. Creativity and clean code are highly valued.</p>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-loop-accent">
+                <h3 class="text-2xl font-semibold text-loop-indigo mb-3">Your Tech Freedom</h3>
+                <p>You have complete freedom over your tech stack—from Django/HTMX to MERN or Angular. We value clean code and ingenious solutions over rigid framework adherence.</p>
             </div>
-
-            <!-- Card 3: Mentorship -->
-            <div class="bg-white p-8 rounded-2xl shadow-xl border-l-4 border-loop-accent text-center transition duration-500 hover:shadow-3xl transform hover:translate-y-[-8px]">
-                <svg class="w-12 h-12 text-loop-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                <h3 class="text-2xl font-bold text-loop-indigo mb-3">Personalized Feedback</h3>
-                <p class="text-base text-gray-600">Get 1:1 mentorship feedback on design, code quality, and problem-solving skills.</p>
-            </div>
-            
-        </div>
-    </section>
-    
-    <!-- 
-    SECTION 3: TESTIMONIAL/SOCIAL PROOF
-    - Adds credibility and finishes the page content nicely.
-    -->
-    <section class="py-12 bg-loop-bg-light">
-        <h2 class="text-4xl font-extrabold text-loop-dark-violet mb-12 text-center">
-            Community Shout-Outs
-        </h2>
-        
-        <div class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-            
-            <!-- Testimonial Card 1 -->
-            <div class="bg-white p-6 rounded-xl shadow-xl border-t-4 border-loop-indigo transition duration-300 hover:shadow-2xl">
-                <p class="text-xl italic text-gray-700 mb-4 leading-relaxed">
-                    "This task was key to my growth. The focus on responsive design and clean structure really pushed me, and the feedback was priceless."
-                </p>
-                <div class="flex justify-end">
-                    <p class="font-semibold text-loop-accent">— Jane D., Task 2 Contributor</p>
-                </div>
-            </div>
-            
-            <!-- Testimonial Card 2 -->
-            <div class="bg-white p-6 rounded-xl shadow-xl border-t-4 border-loop-indigo transition duration-300 hover:shadow-2xl">
-                <p class="text-xl italic text-gray-700 mb-4 leading-relaxed">
-                    "I chose Django/HTMX to learn hypermedia, and the mentorship helped me deliver a truly dynamic, single-page-like experience. Highly recommend!"
-                </p>
-                <div class="flex justify-end">
-                    <p class="font-semibold text-loop-accent">— Alex R., Full Stack Participant</p>
-                </div>
-            </div>
-            
         </div>
     </section>
 {% endblock content %}
