@@ -1,0 +1,57 @@
+<!-- HTMX Target ID: contact-form-container will be replaced by this content -->
+<form method="POST" 
+      hx-post="{% url 'contact:contact_view' %}" 
+      hx-target="#contact-form-container" 
+      hx-swap="outerHTML" 
+      class="space-y-4">
+    
+    {% csrf_token %}
+    
+    <!-- Display non-field errors if any -->
+    {% if form.non_field_errors %}
+        <div class="p-3 bg-red-100 text-red-700 rounded-lg border border-red-300">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+
+    <!-- Name Field -->
+    <div>
+        {{ form.name.label_tag }}
+        {{ form.name }}
+        {% if form.name.errors %}
+            <p class="text-red-500 text-xs italic mt-1">{{ form.name.errors.0 }}</p>
+        {% endif %}
+    </div>
+
+    <!-- Email Field -->
+    <div>
+        {{ form.email.label_tag }}
+        {{ form.email }}
+        {% if form.email.errors %}
+            <p class="text-red-500 text-xs italic mt-1">{{ form.email.errors.0 }}</p>
+        {% endif %}
+    </div>
+
+    <!-- Subject Field -->
+    <div>
+        {{ form.subject.label_tag }}
+        {{ form.subject }}
+        {% if form.subject.errors %}
+            <p class="text-red-500 text-xs italic mt-1">{{ form.subject.errors.0 }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Message Field -->
+    <div>
+        {{ form.message.label_tag }}
+        {{ form.message }}
+        {% if form.message.errors %}
+            <p class="text-red-500 text-xs italic mt-1">{{ form.message.errors.0 }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Submit Button -->
+    <button type="submit" class="w-full bg-loop-indigo text-white font-semibold py-3 mt-4 rounded-lg shadow-md hover:bg-loop-accent transition duration-300 transform hover:scale-[1.01]">
+        Send Message
+    </button>
+</form>
