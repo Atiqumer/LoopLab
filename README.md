@@ -1,6 +1,5 @@
 # LoopLab Website
 
-[![GitHub last commit](https://img.shields.io/github/last-commit/Atiqumer/LoopLab?style=flat-square)](https://github.com/Atiqumer/LoopLab/commits/main)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 ---
