@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LoopLab Community Site - {% block title %}{% endblock title %}</title>
+    
+    <title>LoopLab</title>
     
     <!-- Load Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -48,9 +49,7 @@
                 <a href="{% url 'pages:home' %}" class="flex items-center space-x-2 text-3xl font-extrabold tracking-widest hover:text-loop-accent transition duration-300">
                     <!-- Image Tag for your PNG Logo. Ensure file is at static/img/logo.png -->
                     <img src="{% static 'img/logo.png' %}" alt="LoopLab Logo" class="h-8 w-auto">
-                    <span>LOOPLAB</span>
                 </a>
-                
                 <!-- Nav Links: Professional and responsive -->
                 <div class="flex flex-col md:flex-row md:space-x-8 mt-2 md:mt-0 space-y-2 md:space-y-0 text-base font-medium">
                     
@@ -123,7 +122,7 @@
 
     <!-- Footer: Simple, elegant, and professional -->
     <footer class="bg-loop-dark-violet text-white text-center p-4 text-sm mt-auto shadow-inner">
-        <p>&copy; 2025 LoopLab Community Tech Task. Crafted with **Django & HTMX**.</p>
+        <p>&copy; 2025 LoopLab Community Tech Task. Designed by Atiq Umer.</p>
     </footer>
 </body>
 </html>
