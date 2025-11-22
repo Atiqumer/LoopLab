@@ -76,12 +76,28 @@ WSGI_APPLICATION = 'looplab_site.wsgi.application'
 
 
 # Database Configuration for Railway (Uses dj-database-url)
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Use DATABASE_URL from Railway environment, or fall back to local SQLite
+#         default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
+#         conn_max_age=600 # Recommended for production
+#     )
+# }
+
+# settings.py
+
+import os
+# Note: You must ensure os.getenv() returns strings that Django expects
+
 DATABASES = {
-    'default': dj_database_url.config(
-        # Use DATABASE_URL from Railway environment, or fall back to local SQLite
-        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
-        conn_max_age=600 # Recommended for production
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME', ''),
+        'USER': os.getenv('DB_USER', ''),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', ''),
+        'PORT': os.getenv('DB_PORT', ''),
+    }
 }
 
 
