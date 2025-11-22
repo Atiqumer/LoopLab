@@ -2,24 +2,29 @@
 Django settings for looplab_site project.
 """
 
-import os # CRITICAL: Imported for path joining
+import os
 from pathlib import Path
+import dj_database_url
+from dotenv import load_dotenv 
+
+# Load environment variables from .env file for local development
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR should point to the root directory (where manage.py and the 'static' folder are).
+# BASE_DIR is set up correctly to point to the project root (where manage.py is).
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-is+-cg1m7ij&9-hy4nm$$xnkdjo5p@(-y*iktd@y^7&035c^*1'
+# SECURITY WARNING: fetch SECRET_KEY from environment
+SECRET_KEY = os.getenv('SECRET_KEY', 'default-insecure-key-local-only')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Reads DEBUG from environment (e.g., DEBUG=False on Railway)
+DEBUG = os.getenv('DEBUG', 'True') == 'True' 
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS for local (127.0.0.1) and Railway (*)
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
 
 # Application definition
@@ -31,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Your Apps
     'members',
     'pages',
     'projects',
@@ -46,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # ADDED FOR PRODUCTION STATIC SERVING
 ]
 
 ROOT_URLCONF = 'looplab_site.urls'
@@ -53,7 +60,7 @@ ROOT_URLCONF = 'looplab_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,20 +75,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'looplab_site.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
+# Database Configuration for Railway (Uses dj-database-url)
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        # Use DATABASE_URL from Railway environment, or fall back to local SQLite
+        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
+        conn_max_age=600 # Recommended for production
+    )
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
-
+# Password validation (Standard Django)
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -98,9 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
-
+# Internationalization (Standard Django)
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -114,10 +116,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# CRITICAL FIX: STATICFILES_DIRS must point to the 'static' folder next to manage.py
+# CRITICAL FIX 1: STATIC_ROOT is where files are collected for WhiteNoise/Production
+# This is where collectstatic will copy all files into a 'staticfiles' folder at the root.
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
+
+# CRITICAL FIX 2: STATICFILES_DIRS points to the source 'static' folder next to manage.py
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'), 
 ]
+
+# Use WhiteNoise storage for production performance and caching
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Media settings for user-uploaded files (like contributor photos)
 MEDIA_URL = '/media/'
@@ -125,6 +135,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
